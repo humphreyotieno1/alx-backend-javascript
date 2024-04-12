@@ -20,10 +20,14 @@ export default class Car {
   }
 
   [cloneSymbol]() {
-    return new Car(this._brand, this._motor, this._color);
+    return new this.constructor(this._brand, this._motor, this._color);
   }
 
   cloneCar() {
-    return this[cloneSymbol]();
+    const cloned = this[cloneSymbol]();
+    if (cloned.constructor !== this.constructor) {
+      throw new Error('Clone failed: Cloned object is not of the same class');
+    }
+    return cloned;
   }
 }
