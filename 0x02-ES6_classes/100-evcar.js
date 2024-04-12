@@ -1,4 +1,4 @@
-import Car from './10-car.js';
+import Car from './10-car';
 
 export default class EVCar extends Car {
   constructor(brand, motor, color, range) {
@@ -9,7 +9,7 @@ export default class EVCar extends Car {
   cloneCar() {
     const clone = new Car();
     Object.getOwnPropertyNames(this).forEach((key) => {
-      if (key !== "cloneCar") {
+      if (key !== 'cloneCar') {
         clone[key] = this[key];
       }
     });
