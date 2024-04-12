@@ -1,4 +1,4 @@
-const CLONE_CAR = Symbol();
+const cloneSymbol = Symbol('clone');
 
 export default class Car {
   constructor(brand, motor, color) {
@@ -7,13 +7,23 @@ export default class Car {
     this._color = color;
   }
 
+  get brand() {
+    return this._brand;
+  }
+
+  get motor() {
+    return this._motor;
+  }
+
+  get color() {
+    return this._color;
+  }
+
+  [cloneSymbol]() {
+    return new Car(this._brand, this._motor, this._color);
+  }
+
   cloneCar() {
-    const clone = new Car();
-    Object.getOwnPropertyNames(this).forEach((key) => {
-      if (key !== CLONE_CAR) {
-        clone[key] = this[key];
-      }
-    });
-    return clone;
+    return this[cloneSymbol]();
   }
 }
