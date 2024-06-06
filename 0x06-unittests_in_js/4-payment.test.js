@@ -1,21 +1,16 @@
-const Utils = require('./utils');
-const sinon = require('sinon');
-const chai = require('chai');
-const expect = chai.expect;
-const sendPaymentRequestToApi = require('./3-payment');
+const {describe, it} = require("mocha");
+const sinon = require("sinon");
+const sendPaymentRequestToApi = require("./4-payment");
+const Utils = require("./utils");
+const assert = require("assert");
 
-describe('sendPaymentRequestToApi', function () {
-  it('should call Utils.calculateNumber with correct arguments and log result', function () {
-    const utilsStub = sinon.stub(Utils, 'calculateNumber');
-    utilsStub.returns(10);
-    const logSpy = sinon.spy(console, 'log');
+describe("sendPaymentRequestToApi", function() {
+    it("check that Utils.calculateNumber is stubbed", function() {
+	const spy = sinon.spy(console, "log");
+	const stub = sinon.stub(Utils, "calculateNumber").returns(10);
+	sendPaymentRequestToApi(100, 20);
 
-    sendPaymentRequestToApi(100, 20);
-
-    expect(utilsStub.calledOnceWithExactly('SUM', 100, 20)).to.be.true;
-    expect(logSpy.calledOnceWithExactly('The total is: 10')).to.be.true;
-
-    utilsStub.restore();
-    logSpy.restore();
-  });
+	assert(spy.withArgs("The total is: 10").calledOnce);
+	assert(stub.withArgs("SUM", 100, 20).calledOnce);
+    });
 });
