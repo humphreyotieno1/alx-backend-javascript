@@ -1,0 +1,2 @@
+Unit tests in JavaScript are a way to verify the correctness of individual units of code, such as functions or classes. They help ensure that each unit behaves as expected and can catch bugs or regressions early in the development process. Unit tests are typically written using testing frameworks like Jest, Mocha, or Jasmine. These frameworks provide a set of functions and assertions to define test cases and check the expected behavior of the code under test. By running unit tests, developers can gain confidence in the reliability and functionality of their code.
+
